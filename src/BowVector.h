@@ -12,6 +12,11 @@
 
 #include <map>
 #include <vector>
+#include <string>
+#include <ostream>
+#include <istream>
+#include <cstddef>  // for size_t
+#include <cstdint>
 #include "exports.h"
 #if _WIN32
 #include <cstdint>

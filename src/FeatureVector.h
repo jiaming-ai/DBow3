@@ -10,9 +10,10 @@
 #ifndef __D_T_FEATURE_VECTOR__
 #define __D_T_FEATURE_VECTOR__
 
-#include "BowVector.h"
 #include <map>
 #include <vector>
+#include <ostream>
+#include "BowVector.h"
 #include "exports.h"
 namespace DBoW3 {
 
