@@ -76,7 +76,14 @@ IF (INSTALL_DOC)
     INCLUDE("${PROJECT_SOURCE_DIR}/generateDoc.cmake")
     GENERATE_DOCUMENTATION(${PROJECT_SOURCE_DIR}/dox.in)
 ENDIF()
- 
+
+OPTION(USE_COSINE_SIM "Use cosine similarity for distance computation" OFF)
+
+# Add this near other add_definitions() calls
+IF(USE_COSINE_SIM)
+    add_definitions(-DCOSINE_SIM)
+ENDIF()
+
 # ----------------------------------------------------------------------------
 #   Uninstall target, for "make uninstall"
 # ----------------------------------------------------------------------------
