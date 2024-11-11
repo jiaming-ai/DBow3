@@ -78,10 +78,9 @@ IF (INSTALL_DOC)
 ENDIF()
 
 OPTION(USE_COSINE_SIM "Use cosine similarity for distance computation" OFF)
-
-# Add this near other add_definitions() calls
 IF(USE_COSINE_SIM)
     add_definitions(-DCOSINE_SIM)
+    message(STATUS "Using cosine similarity for distance computation")
 ENDIF()
 
 # ----------------------------------------------------------------------------

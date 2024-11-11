@@ -93,25 +93,15 @@ double DescManip::distance(const cv::Mat &a,  const cv::Mat &b)
 {
 #ifdef COSINE_SIM
     // For normalized vectors, cosine distance = 1 - dot(a,b)
-    if (a.type()==CV_32F) {
-        assert(a.rows==1);
-        const float *a_ptr=a.ptr<float>(0);
-        const float *b_ptr=b.ptr<float>(0);
-        float dot = 0.0f;
-        // Use manual loop unrolling for better performance
-        int i = 0;
-        for (; i + 4 <= a.cols; i += 4) {
-            dot += a_ptr[i] * b_ptr[i] +
-                   a_ptr[i+1] * b_ptr[i+1] +
-                   a_ptr[i+2] * b_ptr[i+2] +
-                   a_ptr[i+3] * b_ptr[i+3];
-        }
-        // Handle remaining elements
-        for (; i < a.cols; i++) {
-            dot += a_ptr[i] * b_ptr[i];
-        }
-        return 1.0 - dot;
-    }
+    double dot = 0.;
+    assert(a.type()==CV_32F);
+    assert(a.rows==1);
+    const float *a_ptr=a.ptr<float>(0);
+    const float *b_ptr=b.ptr<float>(0);
+    for(int i = 0; i < a.cols; i ++)
+        dot += a_ptr[i  ] * b_ptr[i  ];
+    return 1.0 - dot;
+
 #endif
     //binary descriptor
     if (a.type()==CV_8U){
